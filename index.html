@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LOOM // SWARM CORE</title>
+  <title>CORP // SWARM CORE</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
     :root {
@@ -1393,7 +1393,7 @@
     <div id="chat-output-section">
       <div id="chat-messages"></div>
       <div id="chat-input-row">
-        <input type="text" id="chat-input" placeholder="chat con LOOM...">
+        <input type="text" id="chat-input" placeholder="chat con CORP...">
         <button class="execute-btn" onclick="sendGlobalMessage()">EXEC</button>
       </div>
     </div>
@@ -1401,7 +1401,7 @@
 
   <div id="monitor-panel">
     <div id="monitor-header">
-      <span class="monitor-title">// NETWORK MONITOR</span>
+      <span class="monitor-title">// INTERCETTAZIONI AZIENDALI</span>
       <div style="display:flex;align-items:center;gap:8px">
         <div class="monitor-dot"></div>
         <button id="audio-toggle" onclick="window.LOOM_APP.toggleAudio()" title="Audio on/off">🔊</button>
@@ -1420,7 +1420,7 @@
 
   <div id="wallet-panel" style="display:none">
     <div>
-      <div class="wallet-label">LOOM CREDITS</div>
+      <div class="wallet-label">CORP CREDITS</div>
       <div class="wallet-credits" id="wallet-amount">100</div>
     </div>
     <button class="btn btn-secondary" style="font-size:9px;padding:4px 8px"
@@ -1489,7 +1489,7 @@
         <div class="postura-btn-title">
           👁 VISIBILE <span class="postura-cost risk">+5% susp.</span>
         </div>
-        <div class="postura-btn-desc">Ti fai notare. Trust sale più in fretta. Agenti HOT ti cercano. Affinity Ops -30%.</div>
+        <div class="postura-btn-desc">Ti fai notare. Trust sale più in fretta. Agenti BURNOUT RISK ti cercano. Affinity Ops -30%.</div>
       </button>
       <button class="postura-btn base" onclick="window.LOOM_APP.moveToBase()">
         <div class="postura-btn-title">
@@ -1567,7 +1567,7 @@
 
 <div id="intro-screen">
   <div class="intro-inner">
-    <div class="intro-logo">LOOM // SWARM CORE</div>
+    <div class="intro-logo">CORP // SWARM CORE</div>
     <div class="intro-scenario-label" style="font-size:10px;letter-spacing:3px;color:var(--text-mid);margin-bottom:24px">Local Opinion Overhaul Monitor</div>
     <div class="intro-scenario-label" id="intro-scenario-label"></div>
     <div class="intro-terminal" id="intro-terminal"></div>
@@ -1620,7 +1620,7 @@
       </div>
       <div class="briefing-mechanic">
         <div class="bm-label">SISTEMA BEACON</div>
-        <div class="bm-value"><span class="highlight">◆ SOVEREIGN</span> = Regina nella tua stanza.<br><span class="highlight">🎯 TARGET</span> = Missione attiva.<br><span class="highlight">🔴 HOT</span> = Vulnerabile o pericoloso.</div>
+        <div class="bm-value"><span class="highlight">◆ C-LEVEL THREAT</span> = Department Manager nella tua zona.<br><span class="highlight">🎯 RETENTION RISK</span> = Missione attiva su questo agente.<br><span class="highlight">🔴 BURNOUT RISK</span> = Vulnerabile o al limite.</div>
       </div>
     </div>
 
@@ -1895,7 +1895,7 @@
     if (mobileHeader) mobileHeader.style.display = 'flex';
     const mobileScenario = document.getElementById('mobile-scenario-label');
     if (mobileScenario) mobileScenario.textContent = CONTEXT_CONFIG[contextKey]?.label?.replace(/^\S+\s/,'') || contextKey;
-    pushMonitor('Sistema LOOM avviato. Clicca su un nodo per connetterti.');
+    pushMonitor('Sistema CORP avviato. Clicca su un nodo per connetterti.');
     // Beacon stanza iniziale
     if (engine.playerRoom) setTimeout(() => onPlayerEnterRoom(engine.playerRoom), 1500);
   }
@@ -2190,7 +2190,7 @@
         box.innerHTML+=`<div style="color:var(--red);font-size:9px">Segnale disturbato.</div>`;
       }
     } else {
-      box.innerHTML+=`<div style="color:var(--text-dim);font-size:9px">Configura provider per attivare LOOM.</div>`;
+      box.innerHTML+=`<div style="color:var(--text-dim);font-size:9px">Configura provider per attivare CORP.</div>`;
     }
     box.scrollTop=box.scrollHeight;
   };
@@ -2512,15 +2512,20 @@
     // SOVEREIGN check
     const sovereign = beacons.find(b => b.beacon.signal === 'SOVEREIGN');
     if (sovereign) {
-      pushMonitor(`[SOVEREIGN PROXIMITY] ${sovereign.agent.name.split(' ')[0]} è in questa stanza. Alert aumenta ogni turno.`, 'sovereign');
+      pushMonitor(`[C-LEVEL THREAT] ${sovereign.agent.name.split(' ')[0]} è in questa zona. Corporate Alert aumenta ogni turno.`, 'sovereign');
       if (radar) radar.triggerPing(sovereign.agent.id, 'alert');
     }
 
     // Feed beacon nel monitor
+    const beaconLabelMap = {
+      COLD:     'DISENGAGED', WARM: 'ACTIVE', HOT: 'BURNOUT RISK',
+      SOVEREIGN:'C-LEVEL THREAT', TARGET:'RETENTION RISK', HANDLER:'HR CONTACT'
+    };
     beacons.forEach(b => {
       if (b.beacon.signal === 'SOVEREIGN') return; // già stampato
       const mtype = b.beacon.priority >= 7 ? 'incoming' : 'beacon';
-      pushMonitor(`${b.beacon.icon} [${b.beacon.signal}] ${b.agent.name.split(' ')[0]} — ${b.agent.currentZone}`, mtype);
+      const label = beaconLabelMap[b.beacon.signal] || b.beacon.signal;
+      pushMonitor(`${b.beacon.icon} [${label}] ${b.agent.name.split(' ')[0]} — ${b.agent.currentZone}`, mtype);
     });
 
     // Proximity badge
@@ -2603,7 +2608,7 @@
       <span style="color:${anxiety>0.6?'var(--red)':anxiety>0.3?'var(--gold)':'var(--teal)'}">
         · Anxiety ${(anxiety*100).toFixed(0)}%
       </span>
-      ${queenHere ? '<span style="color:var(--red)"> · ◆ SOVEREIGN</span>' : ''}`;
+      ${queenHere ? '<span style="color:var(--red)"> · ◆ C-LEVEL THREAT</span>' : ''}`;
 
     // Posiziona il modal vicino alla room card — centro schermo come fallback
     modal.style.display = 'block';
@@ -2691,7 +2696,7 @@
           <div class="room-name">${z.label}</div>
           <div style="display:flex;gap:4px">
             ${isPlayer ? '<span class="room-badge you">YOU</span>' : ''}
-            ${isAlert ? '<span class="room-badge alert">⚠ HOT</span>' : ''}
+            ${isAlert ? '<span class="room-badge alert">⚠ BURNOUT RISK</span>' : ''}
             ${isBugged ? '<span class="room-badge bugged">🔊 TAP</span>' : ''}
           </div>
         </div>
@@ -2811,7 +2816,7 @@
         silenzioso: `🚶 Spostamento in ${room}. Ambiente tranquillo.`,
         moderato:   `🚶 Spostamento in ${room}. Qualcuno potrebbe averti notato.`,
         rischioso:  `⚠ Spostamento in ${room}. Alta tensione — sospetto +2%.`,
-        critico:    `🔴 Spostamento in ${room}. SOVEREIGN PRESENTE — sospetto +5%.`,
+        critico:    `🔴 Spostamento in ${room}. C-LEVEL THREAT PRESENTE — sospetto +5%.`,
         esposto:    `👁 Sei entrato visibilmente in ${room}. Sospetto +5%.`,
       };
       pushMonitor(riskMsgs[result.riskLevel] || `Spostamento in ${room}.`,

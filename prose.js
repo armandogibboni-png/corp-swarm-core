@@ -60,6 +60,18 @@ export const CONTEXT_CONFIG = {
       PEOPLE_OPS:  { rx:0.25, ry:0.72 },
       LEADERSHIP:  { rx:0.75, ry:0.72 }
     }
+  },
+  CORP_OFFICE: {
+    label: '🏢 CORP // Office',
+    subtitle: 'Ristrutturazione, burnout, chi sopravvive decide le regole',
+    factions: ['TECH_DEV','MARKETING','SALES','LEGAL_HR'],
+    factionLabels: { TECH_DEV:'TEC', MARKETING:'MKT', SALES:'SAL', LEGAL_HR:'L/HR' },
+    factionCenters: {
+      TECH_DEV:  { rx:0.25, ry:0.28 },
+      MARKETING: { rx:0.75, ry:0.28 },
+      SALES:     { rx:0.25, ry:0.72 },
+      LEGAL_HR:  { rx:0.75, ry:0.72 }
+    }
   }
 };
 
@@ -417,6 +429,77 @@ export const LORE_BY_CONTEXT = {
       "Sa che la due diligence di un potenziale acquirente ha trovato qualcosa.",
       "Sta costruendo una exit strategy personale indipendente da quella aziendale."
     ]
+  },
+
+  CORP_OFFICE: {
+    TECH_DEV: [
+      "Sa che c'è un bug critico in produzione. Ha scelto di non segnalarlo prima della review.",
+      "Sta lavorando su un progetto personale durante le ore aziendali.",
+      "Ha copiato blocchi di codice proprietario su un repo privato.",
+      "Sa che la prossima ristrutturazione colpirà il suo team. Non lo ha detto ai colleghi.",
+      "Ha accesso a dati utente che non dovrebbe poter leggere.",
+      "Sta cercando lavoro di nascosto. Ha già due colloqui questa settimana.",
+      "Ha simulato remote working mentre era irreperibile per ore.",
+      "Conosce una backdoor nel sistema legacy che nessuno ha mai chiuso.",
+      "Sa che il GDPR è stato violato nell'ultimo deploy. Il ticket è stato chiuso come 'won't fix'.",
+      "Sta raccogliendo prove per un whistleblowing che non ha ancora deciso di fare.",
+      "Ha bypassato il code review tre volte in un mese.",
+      "Sa chi ha causato il down di servizio del mese scorso. Tace.",
+      "Ha firmato un NDA e ha comunque parlato con un giornalista tech.",
+      "Sta costruendo una feature non autorizzata nel tempo aziendale.",
+      "Ha modificato i benchmark per far sembrare migliori le performance del sistema."
+    ],
+    MARKETING: [
+      "Ha gonfiato i numeri di engagement nel report trimestrale. Sa che nessuno controlla.",
+      "Sta usando il budget campagna per attività non tracciabili.",
+      "Sa che il brief originale del cliente è stato alterato prima della presentazione.",
+      "Ha condiviso dati di competitor con una fonte esterna.",
+      "Sta per lasciare l'azienda e sta portando via i contatti dei clienti.",
+      "Sa che la campagna principale ha performato sotto il 30% del target. Il report dice altro.",
+      "Ha costruito un canale social non ufficiale per testare contenuti non approvati.",
+      "Sa chi ha fatto trapelare la strategia dell'anno al competitor.",
+      "Ha promesso deliverable che il team non può produrre nei tempi concordati.",
+      "Sta raccogliendo feedback negativi interni su un manager per usarli come leva.",
+      "Sa che l'agenzia esterna ha subappaltato il lavoro senza comunicarlo.",
+      "Ha accesso all'account pubblicitario del cliente e lo usa per test non autorizzati.",
+      "Sa che un influencer pagato ha relazioni non dichiarate con un competitor.",
+      "Ha modificato uno screenshot di analytics prima di condividerlo in board.",
+      "Sta negoziando in parallelo con due agenzie senza dichiararle l'una all'altra."
+    ],
+    SALES: [
+      "Ha promesso funzionalità inesistenti a un cliente da 500k di contratto.",
+      "Sta gonfiando il pipeline per raggiungere il quota di fine trimestre.",
+      "Ha un accordo informale con un intermediario esterno non registrato.",
+      "Sa che il cliente più grande sta valutando seriamente un competitor.",
+      "Sta portando i contatti aziendali nel suo CRM personale.",
+      "Ha falsificato le note di una call con un prospect.",
+      "Sa che un collega ha chiuso un deal con metodi che non reggerebbero una audit.",
+      "Conosce il pricing reale riservato a certi clienti. Lo usa in modo non ufficiale.",
+      "Sta negoziando la sua uscita mentre chiude un contratto importante.",
+      "Ha bypassato il processo di approvazione legale su un accordo.",
+      "Sa che un cliente pagante usa il prodotto per scopi non previsti nel contratto.",
+      "Ha condiviso la roadmap con un prospect senza autorizzazione del Product.",
+      "Sta per portare via un account da 300k se riesce a fare l'accordo giusto.",
+      "Conosce l'identità del cliente che ha scritto la review negativa su Glassdoor.",
+      "Ha promesso SLA che il team tecnico non può rispettare."
+    ],
+    LEGAL_HR: [
+      "Sa chi è nella lista del prossimo round di tagli. Non può dirlo ufficialmente.",
+      "Ha accesso ai salary di tutti. Alcuni gap sono molto più grandi di quello che la gente pensa.",
+      "Sta coprendo una segnalazione interna che non è stata gestita.",
+      "Sa che un manager ha avuto comportamenti scorretti. Il caso è stato chiuso in silenzio.",
+      "Conosce le performance review reali, non quelle condivise con i diretti interessati.",
+      "Ha promesso promozioni che il budget non consente.",
+      "Sa che due persone nel team hanno una relazione non dichiarata.",
+      "Sta gestendo un caso disciplinare che non risulta nei documenti ufficiali.",
+      "Conosce le ragioni reali per cui tre persone si sono dimesse nell'ultimo mese.",
+      "Ha visto il contenuto di una segnalazione anonima. Sa di chi si tratta.",
+      "Sa che la policy smart working cambierà il mese prossimo. Non è ancora pubblica.",
+      "Ha accesso a dati sanitari di alcuni dipendenti tramite il piano welfare aziendale.",
+      "Sta raccogliendo dati su chi supera la soglia di sick leave mensile.",
+      "Conosce l'esito di una causa di lavoro che non è stato comunicato al team.",
+      "Sa che il Director ha incontrato un headhunter. Il contratto scade tra quattro mesi."
+    ]
   }
 };
 
@@ -540,6 +623,27 @@ export const INCOMING_MESSAGES = {
     "Ti sto osservando. In senso positivo, per ora.",
     "Sei il tipo di persona con cui vale la pena avere una conversazione privata.",
     "Hai capito qualcosa che altri non hanno capito. È interessante."
+  ],
+  // CORP_OFFICE
+  TECH_DEV: [
+    "Non usare Slack per questa roba. Scrivimi su Signal.",
+    "Ho visto qualcosa nei log che non dovrei aver visto.",
+    "Attento alla prossima sprint review. C'è qualcosa che non torna."
+  ],
+  MARKETING: [
+    "Il brief che ti hanno mandato non è quello originale. Te ne sei accorto?",
+    "Ho sentito il tuo nome in una call di allineamento. Non eri invitato.",
+    "Ci sono numeri nel report che qualcuno ha aggiustato prima di condividerlo."
+  ],
+  SALES: [
+    "Ho sentito il tuo nome in una call che non ti riguardava.",
+    "Attento a quello che dici nelle standup. Qualcuno riporta.",
+    "Ho un'informazione che potrebbe farti comodo. Ma non adesso."
+  ],
+  LEGAL_HR: [
+    "Non posso dirti niente ufficialmente. Ufficiosamente, però...",
+    "Hai fatto qualcosa che ha attirato attenzione. Non in senso positivo.",
+    "C'è qualcosa nel tuo dossier che dovresti sapere prima degli altri."
   ]
 };
 
@@ -598,6 +702,14 @@ export const ZONE_CONFIG = {
     { label: 'Rooftop Bar',  rx: 0.70, ry: 0.28, rr: 0.09 },
     { label: 'Sala Ping-Pong',rx:0.28, ry: 0.68, rr: 0.08 },
     { label: 'Hot Desk Area',rx: 0.70, ry: 0.68, rr: 0.10 },
+  ],
+  CORP_OFFICE: [
+    { label: 'Open Space',         rx: 0.38, ry: 0.32, rr: 0.14 },
+    { label: 'Break Room',         rx: 0.68, ry: 0.25, rr: 0.09 },
+    { label: 'Boardroom',          rx: 0.25, ry: 0.65, rr: 0.09 },
+    { label: 'Executive Suite',    rx: 0.72, ry: 0.62, rr: 0.08 },
+    { label: 'Client Meeting Room',rx: 0.50, ry: 0.72, rr: 0.08 },
+    { label: 'Remote Working',     rx: 0.68, ry: 0.45, rr: 0.07 },
   ],
 };
 
@@ -752,6 +864,48 @@ export const AMBIENT_INTERCEPTS = {
       'Qualcuno ha spostato il divisorio. Ora si vede meno dall\'ingresso.',
     ],
   },
+  CORP_OFFICE: {
+    'Open Space': [
+      '[Open Space] {a} e {b} hanno smesso di parlare quando è entrato qualcuno.',
+      '[Open Space] {a} ha abbassato il monitor non appena si è avvicinato {b}.',
+      '[Open Space] Una scrivania sgombrata di colpo. Le foto non ci sono più.',
+      '[Open Space] {a} ha chiesto a {b} di uscire. Non per una pausa. Per qualcos\'altro.',
+      '[Open Space] Qualcuno ha stampato un documento e l\'ha ritirato subito. Non era il suo piano.',
+      '[Open Space] {a} sta lavorando con le cuffie a volume zero. Ascolta.',
+    ],
+    'Break Room': [
+      '[Break Room] {a} e {b} hanno smesso di parlare quando è entrato qualcuno.',
+      '[Break Room] Conversazione interrotta. Sorrisi di regia.',
+      '[Break Room] {a} ha aspettato che si svuotasse prima di avvicinarsi a {b}.',
+      '[Break Room] Un foglietto lasciato sul tavolo. Era sparito prima della fine della pausa.',
+      '[Break Room] {a} non ha toccato il caffè. Stava aspettando.',
+    ],
+    'Boardroom': [
+      '[Boardroom] Riunione non in calendario. Partecipanti non comunicati.',
+      '[Boardroom] La riunione doveva durare 30 min. Sono dentro da due ore.',
+      '[Boardroom] {a} è uscito dalla Boardroom prima degli altri. Non ha salutato.',
+      '[Boardroom] Voci dal corridoio. Qualcuno ha alzato il tono.',
+      '[Boardroom] La porta è rimasta socchiusa tre minuti. Poi chiusa dall\'interno.',
+    ],
+    'Executive Suite': [
+      '[Executive Suite] {a} è entrato senza bussare. Non era previsto.',
+      '[Executive Suite] Una chiamata terminata di colpo. Poi silenzio.',
+      '[Executive Suite] {a} e il Director per 40 minuti. Nessun invito nel calendario.',
+      '[Executive Suite] Qualcuno ha lasciato l\'Executive Suite con un\'espressione che non si capisce.',
+    ],
+    'Client Meeting Room': [
+      '[Client Meeting] {a} ha controllato il telefono tre volte in cinque minuti.',
+      '[Client Meeting] La riunione col cliente è finita prima del previsto. Nessuno spiega.',
+      '[Client Meeting] {a} è uscito a metà. Nessuno ha detto niente.',
+      '[Client Meeting] Un accordo firmato in fretta. Nessuno ha letto tutto.',
+    ],
+    'Remote Working': [
+      '[Remote] {a} non ha risposto a 4 messaggi consecutivi. Status: Online.',
+      '[Remote] {a} ha modificato un documento e ha rimosso la cronologia modifiche.',
+      '[Remote] Camera spenta in call. Microfono spento. Status verde.',
+      '[Remote] {a} ha lasciato la call senza dire niente. Non è tornato.',
+    ],
+  },
 };
 
 // ── FALLBACK MATRIX (pattern matching offline) ─────────────────────────────────
@@ -810,6 +964,12 @@ export const MISSION_TEMPLATES = {
     SALES:       ['{target} sta portando via un account enorme. Ho bisogno di saperlo prima che sia troppo tardi.', 'Quella call con il prospect. {target} ha promesso qualcosa che non può mantenere. Scopri cosa.', '{target} conosce il pricing reale. Scopri se lo ha condiviso con qualcuno.'],
     PEOPLE_OPS:  ['La lista del prossimo layoff. {target} la conosce. Ho bisogno di un nome.', '{target} sta coprendo una segnalazione. Scopri di chi si tratta.', 'Il CEO ha visitato un headhunter. {target} lo sa. Fammelo confermare.'],
     LEADERSHIP:  ['Quell\'acquisizione in corso. {target} ne sa i dettagli. Scopri tutto.', 'Il runway reale. {target} lo conosce. Ho bisogno di quel numero.', '{target} ha un accordo di buonuscita segreto con qualcuno. Scopri con chi.'],
+  },
+  CORP_OFFICE: {
+    TECH_DEV:  ['{target} sa del bug in produzione e non lo ha segnalato. Scopri perché.', 'Quel deploy di venerdì. {target} sa cosa è successo davvero. Avvicinalo prima che parli con altri.', '{target} sta costruendo qualcosa fuori dal repo ufficiale. Scopri cosa e per chi.'],
+    MARKETING: ['{target} ha modificato i numeri nel report. Ho bisogno delle prove originali.', 'La campagna è fallita ma il deck dice il contrario. {target} sa dov\'è il vero dato.', '{target} ha un canale diretto con l\'agenzia. Scopri cosa si dicono fuori dai brief.'],
+    SALES:     ['{target} ha promesso cose che il prodotto non può fare. Scopri il cliente e il contratto.', 'Quel deal chiuso in fretta. {target} sa cosa c\'è sotto. Avvicinalo prima dell\'audit.', '{target} sta portando contatti fuori dall\'azienda. Ho bisogno di saperlo adesso.'],
+    LEGAL_HR:  ['La lista dei tagli. {target} la conosce. Ho bisogno di sapere se c\'è il mio nome.', '{target} sta coprendo una segnalazione. Scopri di chi si tratta prima che venga archiviata.', 'Quella causa silenziosa. {target} ne conosce l\'esito. Fammelo sapere prima della board.'],
   },
   DEFAULT: ['Scopri cosa nasconde {target}.', 'Ho bisogno di informazioni su {target} di {faction}.', 'Avvicinati a {target}. C\'è qualcosa che non torna.'],
 };
@@ -1026,6 +1186,17 @@ export const SCENARIO_INTROS = {
       "Devo sapere se il mio nome è su quella lista."
     ],
     obiettivo: "Infiltra la rete. Le due regine sanno chi verrà tagliato. Scoprile prima che tocchi a te."
+  },
+  CORP_OFFICE: {
+    lines: [
+      "Lavori qui da quattordici mesi.",
+      "Pensavi di conoscere le dinamiche.",
+      "Lunedì hanno annunciato una ristrutturazione. Il tuo nome non era nella lista dei salvati. Ancora.",
+      "C'è qualcuno che decide chi rimane e chi sparisce. Non è il tuo manager ufficiale.",
+      "Devi capire chi controlla davvero le decisioni prima che sia troppo tardi.",
+      "Non hai molto tempo."
+    ],
+    obiettivo: "Neutralizza i 2 Department Manager prima che il Corporate Alert Level raggiunga il 100%."
   },
   OSPEDALE_NOTTURNO: {
     lines: [
@@ -2034,6 +2205,22 @@ export const SCENARIO_ENDINGS = {
       "Sai solo che non è successo.",
       "A volte è abbastanza.",
       "Non sempre."
+    ]
+  },
+  CORP_OFFICE: {
+    ESPOSIZIONE: [
+      "Avevi ragione. Le decisioni non venivano dalla struttura ufficiale.",
+      "Venivano da due persone che non comparivano su nessun organigramma pubblico.",
+      "Le hai smontate. Non subito. Non in modo pulito.",
+      "Il tuo nome è ancora in azienda.",
+      "Per ora."
+    ],
+    ISOLAMENTO: [
+      "I due manager non si parlano più.",
+      "La rete di controllo informale si è spezzata.",
+      "Non sai ancora se hai vinto o se hai solo rimandato.",
+      "Ma adesso sai chi decide davvero.",
+      "E loro sanno che lo sai."
     ]
   },
   DEFAULT: {
